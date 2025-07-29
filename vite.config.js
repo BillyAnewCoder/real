@@ -1,21 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: 'client',
   build: {
-    outDir: '../dist/public',
+    // Place the built files in dist/public within your repo
+    outDir: 'dist/public',
     emptyOutDir: true,
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './client/src'),
+      // Point the “@” alias to the project root (where index.html is)
+      '@': path.resolve(__dirname, '.'),
+      // Alias for any static assets you might have
       '@assets': path.resolve(__dirname, './attached_assets'),
-    }
+    },
   },
   css: {
-    postcss: './postcss.config.js'
-  }
-})
+    postcss: './postcss.config.js',
+  },
+});
